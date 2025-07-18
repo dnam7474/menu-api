@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  daamdb:
+    build:
+      context: .
+      dockerfile: daamdb/Dockerfile
+    image: steve353/daam-db
+    restart: always
+    volumes:
+      - daamdb:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: secret123
+      MYSQL_DATABASE: daamdb
+    ports:
+      - "3336:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  #  daamauth:
+  #    build:
+  #      context: auth-server-mysql
+  #      dockerfile: Dockerfile
+  #    image: steve353/daam-auth
+  #    restart: always
+  #    depends_on:
+  #      daamdb:
+  #        condition: service_healthy
+  #    environment:
+  #      DB_HOST: daamdb
+  #      DB_PORT: 3306
+  #      DB_USER: root
+  #      DB_PASSWORD: secret123
+  #      DB_NAME: daamdb
+  #      SERVER_PORT: 9000
+  #    ports:
+  #      - "9000:9000"
+
+  menu-api:
+    build:
+      context: ./menu-api
+      dockerfile: Dockerfile
+    image: steve353/menu-api
+    restart: always
+    depends_on:
+      daamdb:
+        condition: service_healthy
+    environment:
+      DB_HOST: daamdb
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: secret123
+      DB_NAME: daamdb
+      SERVER_PORT: 8080
+      DAAM_SEC: false
+      DB_DDL: update
+      DB_INIT: always
+      DB_ON_ERR: true
+    ports:
+      - "8080:8080"
+
+volumes:
+  daamdb:
+    driver: local

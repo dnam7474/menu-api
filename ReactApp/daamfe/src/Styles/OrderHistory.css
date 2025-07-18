@@ -1,0 +1,25 @@
+
+.order-history-table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.order-history-header {
+    border: 1px solid #ccc;
+    padding: 0.5em;
+}
+
+.order-history-cell {
+    border: 1px solid #ccc;
+    padding: 0.5em;
+}
+
+.order-history-th {
+    border: 1px solid #ccc;
+    padding: 0.5em;
+}
+
+.order-history-totals {
+    font-weight: bold;
+    text-align: right;
+}

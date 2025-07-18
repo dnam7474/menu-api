@@ -1,0 +1,96 @@
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* Aligns cards to the left */
+    gap: 2px; /* Adds spacing between cards */
+}
+
+.card-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1 1 calc(25% - 20px); /* Allows cards to fill across based on size */
+    max-width: 300px; /* Ensures it doesn't exceed 300px */
+    min-width: 150px; /* Ensures it doesn't shrink too small */
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.417);
+    background-color: lightyellow;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.card-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.417);
+}
+
+.card-item .description {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.card-item .price {
+    font-size: 18px;
+    font-weight: bolder;
+    color: #6c0b0b;
+    margin-bottom: 12px;
+    align-self: flex-end;
+}
+
+.card-item .add-button {
+    padding: 10px 16px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #157a46;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    align-self: flex-end;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.417);
+}
+
+.card-item .add-button:hover {
+    background-color: #0056b3;
+}
+
+.card-item .title {
+    font-size: 26px;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 12px;
+    text-align: center;
+    color: darkblue;
+}
+
+.popup-message {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: #4caf50;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(-20px);}
+    10% { opacity: 1; transform: translateY(0);}
+    90% { opacity: 1; transform: translateY(0);}
+    100% { opacity: 0; transform: translateY(-20px);}
+}
